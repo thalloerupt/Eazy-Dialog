@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn5gaisxh4u2o"]
+
+[ext_resource type="Texture2D" uid="uid://dg6sqj8py2251" path="res://example/character/Free Chicken Sprites.png" id="1_0w7vk"]
+[ext_resource type="PackedScene" uid="uid://dlcptwhx3sutf" path="res://example/scenes/dialog_panel.tscn" id="2_5o0p4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o0p4"]
+atlas = ExtResource("1_0w7vk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4a8q"]
+atlas = ExtResource("1_0w7vk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvjai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o0p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4a8q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lu6t0"]
+
+[node name="Npc" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_cvjai")
+autoplay = "default"
+frame_progress = 0.609102
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("CircleShape2D_lu6t0")
+
+[node name="DialogPanel" parent="." instance=ExtResource("2_5o0p4")]
+visible = false
+offset_left = -3.0
+offset_top = -90.0
+offset_right = 117.0
+offset_bottom = -16.0

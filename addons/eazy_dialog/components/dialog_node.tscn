@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://rn53cgkwpy6"]
+
+[ext_resource type="PackedScene" uid="uid://dndw6nbqmg1ms" path="res://addons/eazy_dialog/components/dialog_context.tscn" id="2_7gcu4"]
+[ext_resource type="Texture2D" uid="uid://brfe7v7ea0h8k" path="res://addons/eazy_dialog/icon/add.svg" id="3_2e87v"]
+
+[node name="DialogNode" type="GraphNode"]
+offset_right = 294.0
+offset_bottom = 233.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+resizable = true
+title = "Dialog"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(0.556863, 0.937255, 0.592157, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0.556863, 0.937255, 0.592157, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="HFlowContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HFlowContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HFlowContainer/HBoxContainer"]
+layout_mode = 2
+text = "Character"
+
+[node name="OptionButton" type="OptionButton" parent="HFlowContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogContext" parent="HFlowContainer/VBoxContainer" instance=ExtResource("2_7gcu4")]
+clip_contents = true
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HFlowContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("3_2e87v")
+flat = true

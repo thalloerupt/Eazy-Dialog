@@ -1,0 +1,175 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqcvihf76dpx1"]
+
+[ext_resource type="Script" uid="uid://bgaq00g2th64d" path="res://addons/eazy_dialog/main.gd" id="1_8mdd1"]
+[ext_resource type="Texture2D" uid="uid://brfe7v7ea0h8k" path="res://addons/eazy_dialog/icon/add.svg" id="1_ls5wj"]
+[ext_resource type="Texture2D" uid="uid://bpl30vnsef15x" path="res://addons/eazy_dialog/icon/add_character.svg" id="3_cub2t"]
+[ext_resource type="Script" uid="uid://b0xyf2wj8bo7j" path="res://addons/eazy_dialog/dialog_edit.gd" id="4_gv8kj"]
+[ext_resource type="Texture2D" uid="uid://dgrroyjmi6eeo" path="res://addons/eazy_dialog/icon/save.svg" id="4_kgaqg"]
+
+[node name="Eazy Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_8mdd1")
+
+[node name="NewCharacterDialog" type="ConfirmationDialog" parent="."]
+title = "添加角色"
+position = Vector2i(476, 274)
+
+[node name="TextEdit" type="TextEdit" parent="NewCharacterDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 51.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0300293
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ToolBar" type="HBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="newButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "添加对话
+"
+text = "创建对话"
+icon = ExtResource("1_ls5wj")
+flat = true
+
+[node name="newCharacterButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "添加角色
+"
+text = "创建角色
+"
+icon = ExtResource("3_cub2t")
+flat = true
+
+[node name="SaveButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
+layout_mode = 2
+text = "保存"
+icon = ExtResource("4_kgaqg")
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogEdit" type="GraphEdit" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_colors/selection_stroke = Color(0.556863, 0.937255, 0.592157, 1)
+show_zoom_label = true
+script = ExtResource("4_gv8kj")
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "添加结点"
+
+[node name="AddStartNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "开始结点"
+
+[node name="AddDialogNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "对话结点"
+
+[node name="AddEndNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "结束结点"
+
+[node name="NewSessionDialog" type="ConfirmationDialog" parent="."]
+title = "创建对话"
+initial_position = 1
+size = Vector2i(200, 139)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewSessionDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 90.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NewSessionDialog/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewSessionDialog/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "角色1"
+
+[node name="MainCharacterButton" type="OptionButton" parent="NewSessionDialog/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NewSessionDialog/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewSessionDialog/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "角色2"
+
+[node name="SecondaryCharacterButton" type="OptionButton" parent="NewSessionDialog/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="NewSessionDialog/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewSessionDialog/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "对话名称"
+
+[node name="DialogNameEdit" type="LineEdit" parent="NewSessionDialog/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="confirmed" from="NewCharacterDialog" to="." method="_on_new_character_dialog_confirmed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/newButton" to="." method="_on_new_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/newCharacterButton" to="." method="_on_new_character_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer/AddStartNode" to="." method="_on_add_start_node_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer/AddDialogNode" to="." method="_on_add_dialog_node_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer/AddEndNode" to="." method="_on_add_end_node_pressed"]
+[connection signal="confirmed" from="NewSessionDialog" to="." method="_on_new_session_dialog_confirmed"]
+[connection signal="item_selected" from="NewSessionDialog/VBoxContainer/HBoxContainer/MainCharacterButton" to="." method="_on_main_character_button_item_selected"]
+[connection signal="item_selected" from="NewSessionDialog/VBoxContainer/HBoxContainer2/SecondaryCharacterButton" to="." method="_on_secondary_character_button_item_selected"]

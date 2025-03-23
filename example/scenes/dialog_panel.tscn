@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlcptwhx3sutf"]
+
+[ext_resource type="Theme" uid="uid://23cqnoy27jig" path="res://example/new_theme.tres" id="1_ynp80"]
+
+[node name="DialogPanel" type="Panel"]
+offset_left = 5.0
+offset_top = -97.0
+offset_right = 125.0
+offset_bottom = -23.0
+theme = ExtResource("1_ynp80")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 108.0
+offset_bottom = 38.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "你好"

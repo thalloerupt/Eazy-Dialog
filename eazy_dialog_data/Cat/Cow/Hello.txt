@@ -1,0 +1,55 @@
+[Dialog_0]
+	Character
+		- Cat
+	Context
+		- 终于找到你了！
+	LEFT
+		- START
+	RIGHT
+	   - Dialog_1
+
+[Dialog_1]
+	Character
+		- Cow
+	Context
+		- 我一直在这。
+	LEFT
+		- Dialog_0
+	RIGHT
+	   - Dialog_2
+
+[Dialog_2]
+	Character
+		- Cat
+	Context
+		- 走吧，我们回家。
+	LEFT
+		- Dialog_1
+	RIGHT
+	   - Dialog_3
+
+[Dialog_3]
+	Character
+		- Cow
+	Context
+		- 好的。
+	LEFT
+		- Dialog_2
+	RIGHT
+	   - END
+
+[END]
+	Character
+		- ...
+	Context
+		- ...
+	LEFT
+		- Dialog_3
+
+[START]
+	Character
+		- ...
+	Context
+		- ...
+	RIGHT
+	   - Dialog_0
