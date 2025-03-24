@@ -19,7 +19,7 @@ public partial class EazyDialogRuntime : Node
 {
 
     [Signal] // ✅ Godot automatically handles delegate creation
-    public delegate void DialogueSignalEventHandler(string character,string content);
+    public delegate void DialogueSignalEventHandler(string character,Godot.Collections.Array content);
 
     [Signal] // ✅ Godot automatically handles delegate creation
     public delegate void DialogueEndSignalEventHandler();
@@ -27,11 +27,10 @@ public partial class EazyDialogRuntime : Node
     private static Random _random = new Random();
     private string dialogues;
     private Dictionary<string, Dialogue> dialogs = null;
-    public void PlayNext(string dialogFile){
+    public void PlayNext(string dialogFile,int index = 0){
         if(dialogs == null){
             dialogs = ParseDialog(dialogFile);
             var startRight = dialogs["START"].Right;
-            int i = _random.Next(0,startRight.Count);
             dialogues = startRight[0];
         }
 
@@ -42,9 +41,13 @@ public partial class EazyDialogRuntime : Node
             GD.Print(characterName+"_"+dialogs.Count);
 
             string content = dialog.Content;
-            int j = _random.Next(0,dialogs.Count);
-            dialogues = dialog.Right[0];
-            EmitSignal(SignalName.DialogueSignal, characterName,content);
+            dialogues = dialog.Right[index];
+            Godot.Collections.Array nextContent = new Godot.Collections.Array();
+            foreach (string nextDialog in dialog.Right){
+                nextContent.Add(dialogs[nextDialog].Content);
+            }
+
+            EmitSignal(SignalName.DialogueSignal, characterName,nextContent);
         }else{
             dialogs = null;
             dialogues = null;

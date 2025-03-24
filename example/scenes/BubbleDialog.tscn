@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bhw20oiuww4o7"]
+[gd_scene load_steps=16 format=4 uid="uid://bhw20oiuww4o7"]
 
 [ext_resource type="Texture2D" uid="uid://bd3d2jw6748ie" path="res://example/tilesets/Water.png" id="1_nwfdc"]
 [ext_resource type="Script" uid="uid://gwwemdgagggp" path="res://example/scenes/bubble_dialog.gd" id="1_nx361"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bktboxmv4mqtk" path="res://example/character/Cow.tscn" id="5_8smdb"]
 [ext_resource type="PackedScene" uid="uid://cn5gaisxh4u2o" path="res://example/character/NPC.tscn" id="5_dqo3y"]
 [ext_resource type="PackedScene" uid="uid://dcisv1ytoc1it" path="res://example/scenes/DialogBar.tscn" id="6_3k0kr"]
+[ext_resource type="Script" uid="uid://d1b22ptblvbh1" path="res://example/character/cow.gd" id="6_fjio6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3k0kr"]
 texture = ExtResource("1_nwfdc")
@@ -226,6 +227,9 @@ terrain_set_0/terrain_0/name = "land"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_dqo3y")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjio6"]
+radius = 15.752
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8smdb"]
 radius = 37.108
 
@@ -247,18 +251,29 @@ tile_set = SubResource("TileSet_3k0kr")
 [node name="Cow" parent="." instance=ExtResource("5_8smdb")]
 position = Vector2(328, -338)
 scale = Vector2(4, 4)
+script = ExtResource("6_fjio6")
+
+[node name="Area2D" type="Area2D" parent="Cow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cow/Area2D"]
+position = Vector2(0.25, 5.25)
+shape = SubResource("CircleShape2D_fjio6")
 
 [node name="Npc" parent="." instance=ExtResource("5_dqo3y")]
 position = Vector2(342, 2)
 
 [node name="ChickenArea" type="Area2D" parent="Npc"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Npc/ChickenArea"]
-position = Vector2(-49, -1)
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_8smdb")
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_hxyq7")]
 position = Vector2(-38, 8)
+collision_layer = 3
+collision_mask = 3
 
 [node name="DialogBar" parent="MainCharacter" instance=ExtResource("6_3k0kr")]
 visible = false
@@ -269,3 +284,5 @@ zoom = Vector2(2, 2)
 
 [connection signal="body_entered" from="Npc/ChickenArea" to="." method="_on_chicken_area_body_entered"]
 [connection signal="body_exited" from="Npc/ChickenArea" to="." method="_on_chicken_area_body_exited"]
+
+[editable path="MainCharacter/DialogBar"]

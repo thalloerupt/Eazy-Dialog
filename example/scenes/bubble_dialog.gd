@@ -3,7 +3,7 @@ const eazy_dialog_runtime_cs = preload("res://addons/eazy_dialog/components/Eazy
 @onready var dialog_bar: Control = $MainCharacter/DialogBar
 @onready var main: TextureRect = $MainCharacter/DialogBar/PanelContainer/HBoxContainer/Character
 @onready var chicken: TextureRect = $MainCharacter/DialogBar/PanelContainer/HBoxContainer/Chicken
-@onready var label: RichTextLabel = $MainCharacter/DialogBar/PanelContainer/HBoxContainer/RichTextLabel
+@onready var label: RichTextLabel = $MainCharacter/DialogBar/PanelContainer/HBoxContainer/VBoxContainer/RichTextLabel
 const CHICKEN = preload("res://example/character/chicken.png")
 const CHARACTER = preload("res://example/character/Character.png")
 
@@ -15,14 +15,14 @@ func _ready() -> void:
 	eazy_dialog_runtime.DialogueEndSignal.connect(dialog_end_signal_handel)
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and isEnterChicken:
-		eazy_dialog_runtime.PlayNext("res://eazy_dialog_data/Cat/Chicken/dialog_name.txt")
+		eazy_dialog_runtime.PlayNext("res://eazy_dialog_data/Cat/Chicken/dialog_name.txt",0)
 
 	if Input.is_action_just_pressed("ui_left_click") and isEnterChicken:
 		print(isEnterChicken)
-		eazy_dialog_runtime.PlayNext("res://eazy_dialog_data/Cat/Chicken/dialog_name.txt")
+		eazy_dialog_runtime.PlayNext("res://eazy_dialog_data/Cat/Chicken/dialog_name.txt",0)
 
 
-func dialog_signal_handel(character: String,content: String):
+func dialog_signal_handel(character: String,content: Array):
 	if(dialog_bar.visible == false):
 		dialog_bar.visible = true
 	if (character == "Cat"):
@@ -31,7 +31,7 @@ func dialog_signal_handel(character: String,content: String):
 	if (character == "Chicken"):
 		main.texture = null
 		chicken.texture = CHICKEN
-	label.text = content
+	label.text = content[0]
 
 
 func dialog_end_signal_handel():
