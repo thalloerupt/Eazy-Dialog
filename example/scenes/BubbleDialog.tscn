@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bhw20oiuww4o7"]
+[gd_scene load_steps=17 format=4 uid="uid://bhw20oiuww4o7"]
 
 [ext_resource type="Texture2D" uid="uid://bd3d2jw6748ie" path="res://example/tilesets/Water.png" id="1_nwfdc"]
 [ext_resource type="Script" uid="uid://gwwemdgagggp" path="res://example/scenes/bubble_dialog.gd" id="1_nx361"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cn5gaisxh4u2o" path="res://example/character/NPC.tscn" id="5_dqo3y"]
 [ext_resource type="PackedScene" uid="uid://dcisv1ytoc1it" path="res://example/scenes/DialogBar.tscn" id="6_3k0kr"]
 [ext_resource type="Script" uid="uid://d1b22ptblvbh1" path="res://example/character/cow.gd" id="6_fjio6"]
+[ext_resource type="Script" uid="uid://3gitxn7m8ksa" path="res://example/scenes/dialog_bar.gd" id="10_gkkg1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3k0kr"]
 texture = ExtResource("1_nwfdc")
@@ -278,6 +279,7 @@ collision_mask = 3
 [node name="DialogBar" parent="MainCharacter" instance=ExtResource("6_3k0kr")]
 visible = false
 scale = Vector2(0.5, 0.5)
+script = ExtResource("10_gkkg1")
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
 zoom = Vector2(2, 2)

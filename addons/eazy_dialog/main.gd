@@ -4,7 +4,7 @@ extends Node
 @onready var dialog_edit: GraphEdit = %DialogEdit
 @onready var text_edit: TextEdit = $NewCharacterDialog/TextEdit
 @onready var new_character_dialog: ConfirmationDialog = $NewCharacterDialog
-@onready var h_box_container: HBoxContainer = $MarginContainer/HSplitContainer/VBoxContainer/HBoxContainer
+@onready var content: HSplitContainer = $MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content
 @onready var main_character_button: OptionButton = $NewSessionDialog/VBoxContainer/HBoxContainer/MainCharacterButton
 @onready var secondary_character_button: OptionButton = $NewSessionDialog/VBoxContainer/HBoxContainer2/SecondaryCharacterButton
 @onready var new_session_dialog: ConfirmationDialog = $NewSessionDialog
@@ -130,9 +130,16 @@ func _on_new_session_dialog_confirmed() -> void:
 	main_character = main_character_button.get_item_text(main_character_button.get_selected_id())
 	secondary_character = secondary_character_button.get_item_text(secondary_character_button.get_selected_id())
 
-	if(!h_box_container.visible):
-		h_box_container.visible = true
+	if(!content.visible):
+		content.visible = true
 
 
 func _on_dialog_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	dialog_edit.connect_node(from_node,from_port,to_node,to_port)
+
+
+func _creat_node():
+	pass
+	
+func _connect_node():
+	pass

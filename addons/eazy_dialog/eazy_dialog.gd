@@ -21,15 +21,12 @@ func _enter_tree():
 	save_text_to_cfg()
 
 		
-	add_custom_type("DialogBubble", "MarginContainer",preload("res://addons/eazy_dialog/components/node/dialog_bubble.gd") ,preload("res://addons/eazy_dialog/icon/dialog.svg") )
-	add_custom_type("DialogRichTextLabel", "RichTextLabel", preload("res://addons/eazy_dialog/components/node/dialog_rich_text_label.gd"),preload("res://addons/eazy_dialog/icon/dialog_text.svg") )
 
 
 func _exit_tree():
 	if main_panel_instance:
 		main_panel_instance.queue_free()
-	remove_custom_type("DialogBubble")
-	remove_custom_type("DialogRichTextLabel")
+
 
 
 
