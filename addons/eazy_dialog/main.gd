@@ -9,6 +9,7 @@ extends Node
 @onready var secondary_character_button: OptionButton = $NewSessionDialog/VBoxContainer/HBoxContainer2/SecondaryCharacterButton
 @onready var new_session_dialog: ConfirmationDialog = $NewSessionDialog
 @onready var dialog_name_edit: LineEdit = $NewSessionDialog/VBoxContainer/HBoxContainer3/DialogNameEdit
+@onready var file_dialog: FileDialog = $FileDialog
 
 var start_node = preload("res://addons/eazy_dialog/components/start_node.tscn")
 var dialog_node = preload("res://addons/eazy_dialog/components/dialog_node.tscn")
@@ -62,11 +63,10 @@ func _on_add_end_node_pressed() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	var  csharp_node = csharp_compiler.new()
+	var  csharp_compiler_node = csharp_compiler.new()
 	var dir = DirAccess.open("res://")
 	_create_folder("res://eazy_dialog_data/"+main_character+"/"+secondary_character)
-
-	csharp_node.ExportGraph(dialog_edit,"res://eazy_dialog_data/"+main_character+"/"+secondary_character+"/"+dialog_name+".txt")
+	csharp_compiler_node.ExportGraph(dialog_edit,"res://eazy_dialog_data/"+main_character+"/"+secondary_character+"/"+dialog_name+".txt")
 	_refresh_filesystem()
 
 
@@ -136,10 +136,15 @@ func _on_new_session_dialog_confirmed() -> void:
 
 func _on_dialog_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	dialog_edit.connect_node(from_node,from_port,to_node,to_port)
-
-
-func _creat_node():
-	pass
 	
-func _connect_node():
-	pass
+
+
+
+func _on_open_button_pressed() -> void:
+	file_dialog.popup_centered()
+
+
+func _on_file_dialog_confirmed() -> void:
+	var  csharp_compiler_node = csharp_compiler.new()
+	#csharp_compiler_node.FileToGraph("res://eazy_dialog_data/Cat/Chicken/A.txt",dialog_edit)
+	csharp_compiler_node.FileToGraph(file_dialog.current_path,dialog_edit)

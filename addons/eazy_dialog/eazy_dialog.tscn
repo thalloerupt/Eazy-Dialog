@@ -81,7 +81,7 @@ text = "保存"
 icon = ExtResource("4_kgaqg")
 flat = true
 
-[node name="Button" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
+[node name="OpenButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
 layout_mode = 2
 text = "打开"
 icon = ExtResource("5_twdvk")
@@ -100,7 +100,6 @@ layout_mode = 2
 texture = ExtResource("5_fd25j")
 
 [node name="Content" type="HSplitContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -189,6 +188,7 @@ filters = PackedStringArray("*.txt")
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/newButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/newCharacterButton" to="." method="_on_new_character_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/OpenButton" to="." method="_on_open_button_pressed"]
 [connection signal="connection_request" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/DialogEdit" to="." method="_on_dialog_edit_connection_request"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddStartNode" to="." method="_on_add_start_node_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddDialogNode" to="." method="_on_add_dialog_node_pressed"]
@@ -196,3 +196,4 @@ filters = PackedStringArray("*.txt")
 [connection signal="confirmed" from="NewSessionDialog" to="." method="_on_new_session_dialog_confirmed"]
 [connection signal="item_selected" from="NewSessionDialog/VBoxContainer/HBoxContainer/MainCharacterButton" to="." method="_on_main_character_button_item_selected"]
 [connection signal="item_selected" from="NewSessionDialog/VBoxContainer/HBoxContainer2/SecondaryCharacterButton" to="." method="_on_secondary_character_button_item_selected"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]

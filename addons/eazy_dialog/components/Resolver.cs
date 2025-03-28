@@ -78,7 +78,16 @@ public partial class EazyDialogResolver : Node
 
     }
 
+    public List<string> GetCharacters(string dialogFile){
+        List<string> characters = new();
+        DirectoryInfo dirInfo = new DirectoryInfo(dialogFile);
+        string primary = dirInfo.Parent?.Name ?? "无";
+        string secondary = dirInfo.Parent.Parent.Name;
+        characters.Add(primary);
+        characters.Add(secondary);
 
+        return characters;
+    }
 
         private string GetNthLastDirectory(string filePath, int n)
     {

@@ -1,0 +1,50 @@
+[START]
+    Character
+        - ...
+    Context
+        - ...
+    RIGHT
+       - Dialog_0
+       - Dialog_1
+       - Dialog_2
+
+[Dialog_0]
+    Character
+        - Cat
+    Context
+        - 
+    LEFT
+        - START
+    RIGHT
+       - END
+
+[Dialog_1]
+    Character
+        - Cat
+    Context
+        - 
+    LEFT
+        - START
+    RIGHT
+       - END
+
+[Dialog_2]
+    Character
+        - Cat
+    Context
+        - 
+    LEFT
+        - START
+    RIGHT
+       - END
+
+[END]
+    Character
+        - ...
+    Context
+        - ...
+    LEFT
+        - Dialog_0
+        - Dialog_1
+        - Dialog_2
+

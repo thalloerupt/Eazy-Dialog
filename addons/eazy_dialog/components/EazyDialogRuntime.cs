@@ -59,7 +59,15 @@ public partial class EazyDialogRuntime : Node
 
 }
 
+
 }
+
+
+
+
+
+
+
 }
 
 
