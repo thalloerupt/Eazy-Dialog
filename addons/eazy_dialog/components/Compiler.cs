@@ -72,7 +72,7 @@ public partial class Compiler : EditorPlugin
 
         }
 
-        // 生成 .edm 格式文本
+       
         string content = "";
 
         foreach (var dialog in dialogs)
@@ -150,6 +150,8 @@ public partial class Compiler : EditorPlugin
             GraphNode node = (GraphNode)startNode.Instantiate();
             node.Name = nodeName;
             node.Title = nodeName;
+            Label dialogName= (Label)node.GetNode("HBoxContainer/Label");
+            dialogName.Text = Path.GetFileNameWithoutExtension(filePath);
             node.PositionOffset = position;
             position.X +=300;
             graphEdit.AddChild(node);

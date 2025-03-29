@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgsi83vnjytcd"]
+
+[ext_resource type="Script" uid="uid://b5slpjeiuqkgl" path="res://addons/eazy_dialog/components/editor/dialog_edit.gd" id="1_qqjym"]
+
+[node name="DialogEdit" type="GraphEdit"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_colors/selection_stroke = Color(0.556863, 0.937255, 0.592157, 1)
+grid_pattern = 1
+right_disconnects = true
+show_zoom_label = true
+script = ExtResource("1_qqjym")
+
+[connection signal="connection_request" from="." to="." method="_on_connection_request"]
+[connection signal="delete_nodes_request" from="." to="." method="_on_delete_nodes_request"]

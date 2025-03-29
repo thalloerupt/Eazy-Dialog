@@ -1,7 +1,6 @@
 @tool
 extends Node
 @onready var new_button: Button = %newButton
-@onready var dialog_edit: GraphEdit = %DialogEdit
 @onready var text_edit: TextEdit = $NewCharacterDialog/TextEdit
 @onready var new_character_dialog: ConfirmationDialog = $NewCharacterDialog
 @onready var content: HSplitContainer = $MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content
@@ -11,6 +10,7 @@ extends Node
 @onready var dialog_name_edit: LineEdit = $NewSessionDialog/VBoxContainer/HBoxContainer3/DialogNameEdit
 @onready var file_dialog: FileDialog = $FileDialog
 
+const DIALOG_EDIT = preload("res://addons/eazy_dialog/components/editor/dialog_edit.tscn")
 var start_node = preload("res://addons/eazy_dialog/components/start_node.tscn")
 var dialog_node = preload("res://addons/eazy_dialog/components/dialog_node.tscn")
 var end_node = preload("res://addons/eazy_dialog/components/end_node.tscn")
@@ -19,6 +19,10 @@ var csharp_compiler = preload("res://addons/eazy_dialog/components/Compiler.cs")
 var main_character = ""
 var secondary_character = ""
 var dialog_name = ""
+var dialog_edit: GraphEdit 
+
+func _ready() -> void:
+	dialog_edit = DIALOG_EDIT.instantiate()
 
 func _on_new_character_button_pressed() -> void:
 	new_character_dialog.popup_centered()
@@ -69,6 +73,7 @@ func _on_save_button_pressed() -> void:
 	csharp_compiler_node.ExportGraph(dialog_edit,"res://eazy_dialog_data/"+main_character+"/"+secondary_character+"/"+dialog_name+".txt")
 	_refresh_filesystem()
 
+	
 
 
 func _on_new_character_dialog_confirmed() -> void:
@@ -107,8 +112,8 @@ func _create_folder(path: String) -> void:
 			print("Created folder: " + current_path)	
 
 func _refresh_filesystem():
-	var a = EditorInterface.get_resource_filesystem()
-	a.scan_sources()
+	var fs = EditorInterface.get_resource_filesystem()
+	fs.scan_sources()
 
 
 func _on_main_character_button_item_selected(index: int) -> void:
@@ -124,6 +129,11 @@ func _on_new_session_dialog_confirmed() -> void:
 	dialog_name = dialog_name_edit.text
 	var node:GraphNode = start_node.instantiate()
 	var label:Label = node.get_node("HBoxContainer/Label")
+	if (content.has_node("DialogEdit")):
+		content.remove_child(dialog_edit)
+	content.add_child(dialog_edit)
+	content.move_child(dialog_edit,0)
+	
 	node.position_offset = dialog_edit.get_screen_position()
 	label.text = dialog_name
 	dialog_edit.add_child(node)
@@ -134,12 +144,6 @@ func _on_new_session_dialog_confirmed() -> void:
 		content.visible = true
 
 
-func _on_dialog_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
-	dialog_edit.connect_node(from_node,from_port,to_node,to_port)
-	
-
-
-
 func _on_open_button_pressed() -> void:
 	file_dialog.popup_centered()
 
@@ -147,4 +151,17 @@ func _on_open_button_pressed() -> void:
 func _on_file_dialog_confirmed() -> void:
 	var  csharp_compiler_node = csharp_compiler.new()
 	#csharp_compiler_node.FileToGraph("res://eazy_dialog_data/Cat/Chicken/A.txt",dialog_edit)
+	if (content.has_node("DialogEdit")):
+		content.remove_child(dialog_edit)
+	content.add_child(dialog_edit)
+	content.move_child(dialog_edit,0)
+	
 	csharp_compiler_node.FileToGraph(file_dialog.current_path,dialog_edit)
+
+
+func _on_dialog_edit_delete_nodes_request(nodes: Array[StringName]) -> void:
+	pass # Replace with function body.
+
+
+func _on_dialog_edit_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+	pass # Replace with function body.

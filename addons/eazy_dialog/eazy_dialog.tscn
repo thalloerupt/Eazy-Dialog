@@ -100,18 +100,9 @@ layout_mode = 2
 texture = ExtResource("5_fd25j")
 
 [node name="Content" type="HSplitContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DialogEdit" type="GraphEdit" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content"]
-unique_name_in_owner = true
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 5.0
-theme_override_colors/selection_stroke = Color(0.556863, 0.937255, 0.592157, 1)
-show_zoom_label = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content"]
 layout_mode = 2
@@ -189,7 +180,6 @@ filters = PackedStringArray("*.txt")
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/newCharacterButton" to="." method="_on_new_character_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/OpenButton" to="." method="_on_open_button_pressed"]
-[connection signal="connection_request" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/DialogEdit" to="." method="_on_dialog_edit_connection_request"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddStartNode" to="." method="_on_add_start_node_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddDialogNode" to="." method="_on_add_dialog_node_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddEndNode" to="." method="_on_add_end_node_pressed"]
