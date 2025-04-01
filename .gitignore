@@ -3,16 +3,14 @@
 /android/
 
 
+# 忽略 .old 结尾的文件（备份文件）
+*.old
 
-# Godot-specific ignores
+# 忽略 Godot 的导入缓存文件夹
 .import/
-export.cfg
-export_presets.cfg
 
-# Imported translations (automatically generated from CSV files)
-*.translation
+# 忽略 C# 相关的文件
+*.sln
+*.csproj
 
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+*.editorconfig
