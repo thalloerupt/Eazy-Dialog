@@ -7,10 +7,12 @@
 *.old
 
 # 忽略 Godot 的导入缓存文件夹
-.import/
+*.import
 
 # 忽略 C# 相关的文件
 *.sln
 *.csproj
 
 *.editorconfig
+
+*.godot
