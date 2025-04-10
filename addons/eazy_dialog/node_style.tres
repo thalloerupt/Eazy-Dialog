@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dialggjrx4vmt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvsfu"]
+content_margin_left = 8.0
+bg_color = Color(0.0509804, 0.431373, 0.992157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[resource]
+GraphNode/styles/titlebar = SubResource("StyleBoxFlat_hvsfu")

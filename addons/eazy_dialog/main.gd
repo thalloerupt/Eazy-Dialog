@@ -13,8 +13,11 @@ extends Node
 const DIALOG_EDIT = preload("res://addons/eazy_dialog/components/editor/dialog_edit.tscn")
 var start_node = preload("res://addons/eazy_dialog/components/start_node.tscn")
 var dialog_node = preload("res://addons/eazy_dialog/components/dialog_node.tscn")
+var muti_node = preload("res://addons/eazy_dialog/components/muti_node.tscn")
 var end_node = preload("res://addons/eazy_dialog/components/end_node.tscn")
-var index = 0
+const MUTI_NODE = preload("res://addons/eazy_dialog/components/muti_node.tscn")
+var index_Dialog = 0
+var index_Mutiple = 0
 var csharp_compiler = preload("res://addons/eazy_dialog/components/Compiler.cs")
 var main_character = ""
 var secondary_character = ""
@@ -47,23 +50,38 @@ func _on_new_button_pressed() -> void:
 
 func _on_add_start_node_pressed() -> void:
 	var node = start_node.instantiate()
+	node.position_offset = dialog_edit.get_global_mouse_position()
 	dialog_edit.add_child(node)
 
 
 func _on_add_dialog_node_pressed() -> void:
 	var node:GraphNode = dialog_node.instantiate()
-	node.name = "Dialog_"+str(index)
-	node.title = "Dialog_"+str(index)
+	node.position_offset = dialog_edit.get_screen_position()
+	node.name = "Dialog_"+str(index_Dialog)
+	node.title = "Dialog_"+str(index_Dialog)
 	var optionButton:OptionButton = node.get_node("HFlowContainer/HBoxContainer/OptionButton")
 	print("测试"+main_character+secondary_character)
 	optionButton.add_item(main_character)
 	optionButton.add_item(secondary_character)
 	dialog_edit.add_child(node)
-	index+=1
+	index_Dialog+=1
+
+func _on_add_muti_node_pressed() -> void:
+	var node:GraphNode = muti_node.instantiate()
+	node.position_offset = dialog_edit.get_screen_position()
+	node.name = "Mutiple_"+str(index_Mutiple)
+	node.title = "Mutiple_"+str(index_Mutiple)
+	var optionButton:OptionButton = node.get_node("VBoxContainer/HBoxContainer/OptionButton")
+	optionButton.add_item(main_character)
+	optionButton.add_item(secondary_character)
+	dialog_edit.add_child(node)
+	index_Mutiple+=1
 
 
 func _on_add_end_node_pressed() -> void:
-	dialog_edit.add_child(end_node.instantiate())
+	var node:GraphNode = end_node.instantiate()
+	node.position_offset = dialog_edit.get_screen_position()
+	dialog_edit.add_child(node)
 
 
 func _on_save_button_pressed() -> void:
@@ -139,7 +157,8 @@ func _on_new_session_dialog_confirmed() -> void:
 	dialog_edit.add_child(node)
 	main_character = main_character_button.get_item_text(main_character_button.get_selected_id())
 	secondary_character = secondary_character_button.get_item_text(secondary_character_button.get_selected_id())
-
+	index_Dialog = 0
+	index_Mutiple = 0
 	if(!content.visible):
 		content.visible = true
 

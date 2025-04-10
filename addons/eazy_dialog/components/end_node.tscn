@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://b4p5xpw070bdj"]
+[gd_scene load_steps=2 format=3 uid="uid://b4p5xpw070bdj"]
+
+[ext_resource type="Theme" uid="uid://dialggjrx4vmt" path="res://addons/eazy_dialog/node_style.tres" id="1_lncs0"]
 
 [node name="END" type="GraphNode"]
+theme = ExtResource("1_lncs0")
 resizable = true
 title = "END"
 slot/0/left_enabled = true

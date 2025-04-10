@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://rn53cgkwpy6"]
+[gd_scene load_steps=4 format=3 uid="uid://rn53cgkwpy6"]
 
 [ext_resource type="PackedScene" uid="uid://dndw6nbqmg1ms" path="res://addons/eazy_dialog/components/dialog_context.tscn" id="2_7gcu4"]
 [ext_resource type="Texture2D" uid="uid://brfe7v7ea0h8k" path="res://addons/eazy_dialog/icon/add.svg" id="3_2e87v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qmam"]
+content_margin_left = 8.0
+bg_color = Color(0.0980392, 0.529412, 0.329412, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
 
 [node name="DialogNode" type="GraphNode"]
 offset_right = 294.0
 offset_bottom = 233.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_5qmam")
 resizable = true
 title = "Dialog"
 slot/0/left_enabled = true

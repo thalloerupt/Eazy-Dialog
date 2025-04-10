@@ -1,11 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqcvihf76dpx1"]
+[gd_scene load_steps=11 format=3 uid="uid://dqcvihf76dpx1"]
 
 [ext_resource type="Script" uid="uid://bgaq00g2th64d" path="res://addons/eazy_dialog/main.gd" id="1_8mdd1"]
 [ext_resource type="Texture2D" uid="uid://brfe7v7ea0h8k" path="res://addons/eazy_dialog/icon/add.svg" id="1_ls5wj"]
 [ext_resource type="Texture2D" uid="uid://bpl30vnsef15x" path="res://addons/eazy_dialog/icon/add_character.svg" id="3_cub2t"]
 [ext_resource type="Texture2D" uid="uid://dgrroyjmi6eeo" path="res://addons/eazy_dialog/icon/save.svg" id="4_kgaqg"]
-[ext_resource type="Texture2D" uid="uid://dr6a81byvwryi" path="res://addons/eazy_dialog/icon/logo.png" id="5_fd25j"]
 [ext_resource type="Texture2D" uid="uid://bma1mbgscsf2d" path="res://addons/eazy_dialog/icon/file.svg" id="5_twdvk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fd25j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd25j"]
+bg_color = Color(0.0509804, 0.431373, 0.992157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twdvk"]
+bg_color = Color(0.0980392, 0.529412, 0.329412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad5ia"]
+bg_color = Color(0.454902, 0.188235, 0.976471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyc3t"]
+bg_color = Color(0.0509804, 0.431373, 0.992157, 1)
 
 [node name="Eazy Dialog" type="Control"]
 layout_mode = 3
@@ -97,7 +110,7 @@ size_flags_vertical = 3
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("5_fd25j")
+texture = SubResource("CompressedTexture2D_fd25j")
 
 [node name="Content" type="HSplitContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer"]
 visible = false
@@ -114,14 +127,22 @@ text = "添加结点"
 
 [node name="AddStartNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fd25j")
 text = "开始结点"
 
 [node name="AddDialogNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_twdvk")
 text = "对话结点"
+
+[node name="AddMutiNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ad5ia")
+text = "选项节点"
 
 [node name="AddEndNode" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lyc3t")
 text = "结束结点"
 
 [node name="NewSessionDialog" type="ConfirmationDialog" parent="."]
@@ -182,6 +203,7 @@ filters = PackedStringArray("*.txt")
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/ToolBar/OpenButton" to="." method="_on_open_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddStartNode" to="." method="_on_add_start_node_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddDialogNode" to="." method="_on_add_dialog_node_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddMutiNode" to="." method="_on_add_muti_node_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/MarginContainer/Content/VBoxContainer/AddEndNode" to="." method="_on_add_end_node_pressed"]
 [connection signal="confirmed" from="NewSessionDialog" to="." method="_on_new_session_dialog_confirmed"]
 [connection signal="item_selected" from="NewSessionDialog/VBoxContainer/HBoxContainer/MainCharacterButton" to="." method="_on_main_character_button_item_selected"]

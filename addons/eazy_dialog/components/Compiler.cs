@@ -12,11 +12,15 @@ public partial class Compiler : EditorPlugin
     Vector2 position = new Vector2(0,0);
     Dictionary<string,bool> visited  = new();
     EazyDialogResolver resolver = new EazyDialogResolver();
-    Dictionary<string, Dialogue> dialogs ;
+    Dictionary<string, Dialogue> dialogs;
     List<string> characterNames;
     PackedScene  startNode = GD.Load<PackedScene>("res://addons/eazy_dialog/components/start_node.tscn");
     PackedScene  endNode =  GD.Load<PackedScene>("res://addons/eazy_dialog/components/end_node.tscn");
     PackedScene  dialogNode = GD.Load<PackedScene>("res://addons/eazy_dialog/components/dialog_node.tscn");
+    PackedScene  mutipleNode = GD.Load<PackedScene>("res://addons/eazy_dialog/components/muti_node.tscn");
+    
+    PackedScene  itemNode = GD.Load<PackedScene>("res://addons/eazy_dialog/components/item_dialog.tscn");
+
     public void ExportGraph(GraphEdit graphEdit,string savePath)
     {
 
@@ -29,6 +33,8 @@ public partial class Compiler : EditorPlugin
 
         Dictionary<string, List<string>> leftConnections = new();
         Dictionary<string, List<string>> rightConnections = new();
+        Dictionary<string, List<string>> selections = new();
+
         Dictionary<string, string> context = new();
         Dictionary<string, string> character = new();
 
@@ -44,6 +50,7 @@ public partial class Compiler : EditorPlugin
                 dialogs.Add(nodeTitle);
                 leftConnections[nodeTitle] = new List<string>();
                 rightConnections[nodeTitle] = new List<string>();
+                selections[nodeTitle] = new List<string>();
                 context[nodeTitle] = "";
                 if (nodeTitle.Contains("Dialog"))
                 {
@@ -52,6 +59,14 @@ public partial class Compiler : EditorPlugin
                     context[nodeTitle]=dialogContent;
                     character[nodeTitle] = characterName;
                     
+                }
+                else if(nodeTitle.Contains("Mutiple")){
+                    VBoxContainer itemContainer = child.GetNode<VBoxContainer>("VBoxContainer/ItemContainer");
+                    string characterName = child.GetNode<OptionButton>("VBoxContainer/HBoxContainer/OptionButton").Text;
+                    for(int i=0;i<itemContainer.GetChildren().Count;i++){
+                        selections[nodeTitle].Add(itemContainer.GetChildren()[i].GetNode<TextEdit>("TextEdit").Text);
+                    }
+                    character[nodeTitle] = characterName;
                 }
                 else{
                     context[nodeTitle] = "...";
@@ -82,6 +97,14 @@ public partial class Compiler : EditorPlugin
             content += $"        - {character[dialog]}\n";
             content += $"    Context\n";
             content += $"        - {context[dialog]}\n";
+
+            if(selections[dialog].Count>0){
+                content += $"    Selections\n";
+                foreach (var selection in selections[dialog])
+                {
+                    content += $"        - {selection}\n";
+                }
+            }
 
             // LEFT
             if (leftConnections[dialog].Count > 0)
@@ -178,7 +201,46 @@ public partial class Compiler : EditorPlugin
                 
             graphEdit.AddChild(node);
 
-        }else if(nodeName.StartsWith("END")){
+        }else if(nodeName.StartsWith("Mutiple")){
+            GraphNode node = (GraphNode)mutipleNode.Instantiate();
+            node.Name = nodeName;
+            node.Title = nodeName;
+            OptionButton characterNameEditor = node.GetNode<OptionButton>("VBoxContainer/HBoxContainer/OptionButton");
+            foreach (var (item, index) in characterNames.Select((value, i) => (value, i))){
+                characterNameEditor.AddItem(item);
+            }
+            characterNameEditor.Select(characterNames.IndexOf(dialogs[nodeName].Character));
+
+            foreach(var content in dialogs[nodeName].Selections){
+                HBoxContainer container = (HBoxContainer) itemNode.Instantiate();
+                container.Name = nodeName;
+                TextEdit textEdit = (TextEdit) container.GetNode<TextEdit>("TextEdit");
+                textEdit.Text = content;
+                node.GetNode<VBoxContainer>("VBoxContainer/ItemContainer").AddChild(container);
+
+
+
+            }
+            
+
+
+
+
+
+            if(dialogs[nodeName].Left.Count != 0){
+                GraphNode fatherNode =(GraphNode) graphEdit.GetNode( dialogs[nodeName].Left[0]);
+                node.PositionOffset = new Vector2(fatherNode.PositionOffset.X+500,fatherNode.PositionOffset.Y+(dialogs[fatherNode.Name].Right.IndexOf(nodeName))*300);
+
+
+            }
+
+            graphEdit.AddChild(node);
+
+        }
+        
+        
+        
+        else if(nodeName.StartsWith("END")){
             GraphNode node = (GraphNode)endNode.Instantiate();
             node.Name = nodeName;
             node.Title = nodeName;

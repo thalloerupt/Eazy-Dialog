@@ -1,0 +1,60 @@
+[START]
+	Character
+		- ...
+	Context
+		- ...
+	RIGHT
+	   - Dialog_0
+
+[Dialog_0]
+	Character
+		- Cat
+	Context
+		- 你好
+	LEFT
+		- START
+	RIGHT
+	   - Mutiple_1
+
+[Mutiple_1]
+	Character
+		- Dog
+	Context
+		- 
+	Selections
+		- 你好
+		- 哈哈
+	LEFT
+		- Dialog_0
+	RIGHT
+	   - Dialog_1
+	   - Dialog_2
+
+[Dialog_1]
+	Character
+		- Cat
+	Context
+		- 谢谢
+	LEFT
+		- Mutiple_1
+	RIGHT
+	   - END
+
+[Dialog_2]
+	Character
+		- Cat
+	Context
+		- 呵呵
+	LEFT
+		- Mutiple_1
+	RIGHT
+	   - END
+
+[END]
+	Character
+		- ...
+	Context
+		- ...
+	LEFT
+		- Dialog_1
+		- Dialog_2

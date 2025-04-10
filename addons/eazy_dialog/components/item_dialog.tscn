@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6mgh5y4vkyp8"]
+
+[ext_resource type="Script" uid="uid://bj6jmv62yd5kf" path="res://addons/eazy_dialog/components/item.gd" id="1_co6sr"]
+[ext_resource type="Texture2D" uid="uid://oreb7ri1w86p" path="res://addons/eazy_dialog/icon/delete.svg" id="1_yrnnd"]
+
+[node name="ItemDialog" type="HBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+offset_right = 298.0
+offset_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_co6sr")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+wrap_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("1_yrnnd")
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

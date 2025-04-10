@@ -43,6 +43,10 @@ public partial class EazyDialogResolver : Node
             {
                 currentSection = "RIGHT";
             }
+            else if (trimmed.Equals("Selections"))
+            {
+                currentSection = "Selections";
+            }
             else if (trimmed.StartsWith("- "))
             {
                 string content = trimmed.Substring(2).Trim();
@@ -63,6 +67,10 @@ public partial class EazyDialogResolver : Node
                     else if (currentSection == "RIGHT")
                     {
                         currentDialogue.Right.Add(content);
+                    }
+                    else if (currentSection == "Selections")
+                    {
+                        currentDialogue.Selections.Add(content);
                     }
                 }
             }

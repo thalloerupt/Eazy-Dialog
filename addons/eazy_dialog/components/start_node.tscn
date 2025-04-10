@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8fu3clan4c14"]
 
-[sub_resource type="Theme" id="Theme_38yjg"]
+[ext_resource type="Theme" uid="uid://dialggjrx4vmt" path="res://addons/eazy_dialog/node_style.tres" id="1_phmxm"]
 
 [node name="START" type="GraphNode"]
 offset_right = 234.0
 offset_bottom = 86.0
-theme = SubResource("Theme_38yjg")
+theme = ExtResource("1_phmxm")
 resizable = true
 title = "START"
 slot/0/left_enabled = false
