@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dqcvihf76dpx1"]
 
-[ext_resource type="Script" uid="uid://bgaq00g2th64d" path="res://addons/eazy_dialog/main.gd" id="1_8mdd1"]
-[ext_resource type="Texture2D" uid="uid://brfe7v7ea0h8k" path="res://addons/eazy_dialog/icon/add.svg" id="1_ls5wj"]
-[ext_resource type="Texture2D" uid="uid://bpl30vnsef15x" path="res://addons/eazy_dialog/icon/add_character.svg" id="3_cub2t"]
-[ext_resource type="Texture2D" uid="uid://dgrroyjmi6eeo" path="res://addons/eazy_dialog/icon/save.svg" id="4_kgaqg"]
-[ext_resource type="Texture2D" uid="uid://bma1mbgscsf2d" path="res://addons/eazy_dialog/icon/file.svg" id="5_twdvk"]
+[ext_resource type="Script" uid="uid://bgaq00g2th64d" path="res://addons/eazy_dialog/main_view.gd" id="1_4wxcw"]
+[ext_resource type="Texture2D" uid="uid://brfe7v7ea0h8k" path="res://addons/eazy_dialog/icon/add.svg" id="2_bkuf4"]
+[ext_resource type="Texture2D" uid="uid://bpl30vnsef15x" path="res://addons/eazy_dialog/icon/add_character.svg" id="3_652i0"]
+[ext_resource type="Texture2D" uid="uid://dgrroyjmi6eeo" path="res://addons/eazy_dialog/icon/save.svg" id="4_mm8bl"]
+[ext_resource type="Texture2D" uid="uid://bma1mbgscsf2d" path="res://addons/eazy_dialog/icon/file.svg" id="5_bg2r5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fd25j"]
 
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_8mdd1")
+script = ExtResource("1_4wxcw")
 
 [node name="NewCharacterDialog" type="ConfirmationDialog" parent="."]
 title = "添加角色"
@@ -72,7 +72,7 @@ layout_mode = 2
 tooltip_text = "添加对话
 "
 text = "创建对话"
-icon = ExtResource("1_ls5wj")
+icon = ExtResource("2_bkuf4")
 flat = true
 
 [node name="newCharacterButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
@@ -82,7 +82,7 @@ tooltip_text = "添加角色
 "
 text = "创建角色
 "
-icon = ExtResource("3_cub2t")
+icon = ExtResource("3_652i0")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
@@ -91,13 +91,13 @@ layout_mode = 2
 [node name="SaveButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
 layout_mode = 2
 text = "保存"
-icon = ExtResource("4_kgaqg")
+icon = ExtResource("4_mm8bl")
 flat = true
 
 [node name="OpenButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/ToolBar"]
 layout_mode = 2
 text = "打开"
-icon = ExtResource("5_twdvk")
+icon = ExtResource("5_bg2r5")
 flat = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/VBoxContainer"]

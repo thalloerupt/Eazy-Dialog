@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 
-const MainPanel =preload("res://addons/eazy_dialog/eazy_dialog.tscn")
+const MainPanel =preload("res://addons/eazy_dialog/main.tscn")
 var main_panel_instance
 var inspector_plugin
 
